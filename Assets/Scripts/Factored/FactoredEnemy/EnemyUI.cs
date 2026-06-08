@@ -1,16 +1,37 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyUI : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Dependencies")]
+    [SerializeField] private EnemyHealthController enemyHealthController;
+    [SerializeField] private Slider healthBarSlider;
+
+    // Subscribe to events when enabled
+    private void OnEnable()
     {
-        
+        if (enemyHealthController != null)
+        {
+            enemyHealthController.OnHealthChanged += UpdateHealthBar;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    // This method matches the signature of the Action<float, float> event
+    private void UpdateHealthBar(float currentHealth, float maxHealth)
     {
-        
+        if (healthBarSlider != null)
+        {
+            healthBarSlider.maxValue = maxHealth;
+            healthBarSlider.value = currentHealth;
+        }
+    }
+
+    // Unsubscribe when disabled
+    private void OnDisable()
+    {
+        if (enemyHealthController != null)
+        {
+            enemyHealthController.OnHealthChanged -= UpdateHealthBar;
+        }
     }
 }

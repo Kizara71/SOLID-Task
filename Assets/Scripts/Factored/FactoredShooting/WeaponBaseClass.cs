@@ -8,7 +8,6 @@ public abstract class WeaponBaseClass : MonoBehaviour
 
     [Header("Base Weapon Settings")]
     [SerializeField] private GameObject weaponModel;
-    [SerializeField] protected float damage;
 
     // Virtual methods allow standard behavior that subclasses can override if needed
     public virtual void Equip()

@@ -5,6 +5,7 @@ public class Rifle : WeaponBaseClass, IReloadable
     [Header("Rifle Specs")]
     [SerializeField] private int maxAmmo = 1;
     [SerializeField] private float reloadDuration = 2.5f;
+    [SerializeField] private float damage = 100f;
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip shotSound;

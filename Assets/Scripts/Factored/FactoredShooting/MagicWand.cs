@@ -3,6 +3,7 @@ using UnityEngine;
 public class MagicWand : WeaponBaseClass
 {
     [Header("Wand Specs")]
+    [SerializeField] private float damagePerSecond = 100f;
     [SerializeField] private LineRenderer beamRenderer;
     [SerializeField] private Transform laserTipOrigin;
     // MagicWand uses 'damage' from base class as damage-per-second
@@ -45,7 +46,7 @@ public class MagicWand : WeaponBaseClass
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             beamRenderer.SetPosition(1, hit.point);
-            float frameDamage = damage * Time.deltaTime;
+            float frameDamage = damagePerSecond * Time.deltaTime;
             AttemptDamage(hit, frameDamage);
         }
         else
